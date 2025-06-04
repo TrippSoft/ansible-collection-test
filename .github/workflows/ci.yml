@@ -35,6 +35,7 @@ jobs:
       - name: Run Molecule tests
         run: |
           source ~/venv/ansible-2.16/bin/activate
+          cd ./roles/test
           molecule test
           deactivate
         env:
