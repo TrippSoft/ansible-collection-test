@@ -1,0 +1,4 @@
+---
+- name: Print debug message
+  ansible.builtin.debug:
+    msg: "This is a test role running on {{ ansible_distribution }} {{ ansible_distribution_version }}."

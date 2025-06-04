@@ -1,0 +1,8 @@
+---
+argument_specs:
+  main:
+    short_description: Test
+    description:
+      - This role tests Ansible collection functionality in a GitHub organization.
+    author: Jim Tarpley (@trippsc2)
+    options: {}

@@ -1,0 +1,30 @@
+---
+galaxy_info:
+  author: Jim Tarpley (@trippsc2)
+  namespace: trippsc2
+  role_name: test
+  description: This role tests Ansible collection functionality in a GitHub organization.
+  license: MIT
+
+  min_ansible_version: '2.16'
+
+  platforms:
+    - name: Debian
+      versions:
+        - bookworm
+    - name: EL
+      versions:
+        - '9'
+        - '8'
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - noble
+        - jammy
+        - focal
+
+collections: []
+
+dependencies: []
