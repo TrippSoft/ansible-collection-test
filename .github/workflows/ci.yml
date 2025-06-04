@@ -2,9 +2,15 @@
 name: CI
 'on':
   pull_request:
+    branches:
+      - main
+    paths:
+      - roles/test/**
   push:
     branches:
       - main
+    paths:
+      - roles/test/**
 defaults:
   run:
     working-directory: 'trippsc2.test'

@@ -1,0 +1,47 @@
+---
+name: Docs
+'on':
+  pull_request:
+    branches:
+      - main
+    paths:
+      - galaxy.yml
+      - roles/test/.aar_doc.yml
+      - roles/test/meta/argument_specs.yml
+      - roles/test/meta/main.yml
+  push:
+    branches:
+      - main
+    paths:
+      - galaxy.yml
+      - roles/test/.aar_doc.yml
+      - roles/test/meta/argument_specs.yml
+      - roles/test/meta/main.yml
+defaults:
+  run:
+    working-directory: 'trippsc2.test'
+jobs:
+  docs:
+    name: Generate test role documentation
+    runs-on:
+      - self-hosted
+      - linux
+      - x64
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: 'trippsc2.test'
+      - name: Generate test role documentation
+        run: |
+          source ~/venv/ansible-2.16/bin/activate
+          cd ./roles/test
+          aar-doc . markdown
+          deactivate
+      - name: Commit documentation
+        uses: test-room-7/action-update-file@v1
+        with:
+          file-path: roles/test/README.md
+          commit-message: 'Update documentation'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          commit-branch: main
