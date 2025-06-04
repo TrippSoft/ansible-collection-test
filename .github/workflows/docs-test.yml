@@ -1,5 +1,5 @@
 ---
-name: Docs
+name: Docs - test
 'on':
   pull_request:
     branches:
@@ -23,6 +23,8 @@ defaults:
 jobs:
   docs:
     name: Generate test role documentation
+    permissions:
+      contents: write
     runs-on:
       - self-hosted
       - linux
