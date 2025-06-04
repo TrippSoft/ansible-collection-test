@@ -6,11 +6,17 @@ name: CI
       - main
     paths:
       - roles/test/**
+      - '!roles/test/.aar_doc.yml'
+      - '!roles/test/meta/argument_specs.yml'
+      - '!roles/test/meta/main.yml'
   push:
     branches:
       - main
     paths:
       - roles/test/**
+      - '!roles/test/.aar_doc.yml'
+      - '!roles/test/meta/argument_specs.yml'
+      - '!roles/test/meta/main.yml'
 defaults:
   run:
     working-directory: 'trippsc2.test'

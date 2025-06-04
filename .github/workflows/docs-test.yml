@@ -37,11 +37,9 @@ jobs:
           source ~/venv/ansible-2.16/bin/activate
           cd ./roles/test
           aar-doc . markdown
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions@github.com"
+          git add README.md
+          git commit -m "Update documentation"
+          git push origin main
           deactivate
-      - name: Commit documentation
-        uses: test-room-7/action-update-file@v1
-        with:
-          file-path: roles/test/README.md
-          commit-message: 'Update documentation'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          commit-branch: main
