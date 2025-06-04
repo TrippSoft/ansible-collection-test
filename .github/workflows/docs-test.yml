@@ -5,6 +5,7 @@ name: Docs - test
     branches:
       - main
     paths:
+      - .github/workflows/docs-test.yml
       - galaxy.yml
       - roles/test/.aar_doc.yml
       - roles/test/meta/argument_specs.yml
@@ -13,6 +14,7 @@ name: Docs - test
     branches:
       - main
     paths:
+      - .github/workflows/docs-test.yml
       - galaxy.yml
       - roles/test/.aar_doc.yml
       - roles/test/meta/argument_specs.yml
