@@ -1,6 +1,7 @@
 ---
-name: CI
+name: CI - test role
 'on':
+  workflow_dispatch: {}
   pull_request:
     branches:
       - main
