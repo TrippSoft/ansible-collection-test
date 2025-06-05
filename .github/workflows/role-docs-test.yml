@@ -28,13 +28,8 @@ jobs:
     name: Generate test role documentation
     permissions:
       contents: write
-    runs-on:
-      - self-hosted
-      - linux
-      - x64
-    steps:
-      - name: Generate test role documentation
-        uses: trippsoft/github-actions/.github/workflows/role-docs.yml@main
-        with:
-          working_directory: 'trippsc2.test'
-          role_name: 'test'
+    uses: trippsoft/github-actions/.github/workflows/role-docs.yml@main
+    with:
+      working_directory: 'trippsc2.test'
+      role_name: 'test'
+ 

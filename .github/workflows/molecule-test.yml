@@ -27,10 +27,11 @@ defaults:
 jobs:
   molecule:
     name: Run Molecule tests
-    runs-on:
-      - self-hosted
-      - linux
-      - x64
+    uses: trippsoft/github-actions/.github/workflows/molecule.yml@main
+    with:
+      working_directory: 'trippsc2.test'
+      role_name: 'test'
+      box: 'debian12_base'
     strategy:
       fail-fast: false
       matrix:
@@ -47,10 +48,3 @@ jobs:
           - ubuntu2404_base
           - ubuntu2204_base
           - ubuntu2004_base
-    steps:
-      - name: Run Molecule tests - ${{ matrix.box }}
-        uses: trippsoft/github-actions/.github/workflows/molecule.yml@main
-        with:
-          working_directory: 'trippsc2.test'
-          role_name: 'test'
-          box: ${{ matrix.box }}
