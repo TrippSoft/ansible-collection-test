@@ -1,13 +1,12 @@
 ---
-name: Generate Docs - test role
+name: Generate Role Docs - test role
 'on':
-  workflow_call: {}
   workflow_dispatch: {}
   pull_request:
     branches:
       - main
     paths:
-      - .github/workflows/docs-test.yml
+      - .github/workflows/role-docs-test.yml
       - galaxy.yml
       - roles/test/.aar_doc.yml
       - roles/test/meta/argument_specs.yml
@@ -16,7 +15,7 @@ name: Generate Docs - test role
     branches:
       - main
     paths:
-      - .github/workflows/docs-test.yml
+      - .github/workflows/role-docs-test.yml
       - galaxy.yml
       - roles/test/.aar_doc.yml
       - roles/test/meta/argument_specs.yml
@@ -34,18 +33,8 @@ jobs:
       - linux
       - x64
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          path: 'trippsc2.test'
       - name: Generate test role documentation
-        run: |
-          source ~/venv/ansible-2.16/bin/activate
-          cd ./roles/test
-          aar-doc . markdown
-          git config user.name "GitHub Actions"
-          git config user.email "github-actions@github.com"
-          git add README.md || /bin/true
-          git commit -m "Update test role documentation." || /bin/true
-          git push origin main
-          deactivate
+        uses: trippsoft/github-actions/.github/workflows/role-docs.yml@main
+        with:
+          working_directory: 'trippsc2.test'
+          role_name: 'test'

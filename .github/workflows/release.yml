@@ -1,5 +1,5 @@
 ---
-name: Release
+name: Release collection
 'on':
   push:
     tags:
@@ -14,17 +14,10 @@ jobs:
       - self-hosted
       - linux
       - x64
+    permissions:
+      contents: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Release collection
+        uses: trippsoft/github-actions/.github/workflows/release.yml@main
         with:
-          path: 'trippsc2.test'
-      - name: Release
-        run: |
-          source ~/venv/ansible-2.16/bin/activate
-          ansible-galaxy collection build --force
-          ansible-galaxy collection publish --token "$ANSIBLE_GALAXY_TOKEN" *.tar.gz
-          rm -rf *.tar.gz
-          deactivate
-        env:
-          ANSIBLE_GALAXY_TOKEN: ${{ secrets.GALAXY_API_KEY }}
+          working_directory: 'trippsc2.test'

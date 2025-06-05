@@ -1,5 +1,5 @@
 ---
-name: CI - test role
+name: Molecule - test role
 'on':
   workflow_call: {}
   workflow_dispatch: {}
@@ -26,12 +26,13 @@ defaults:
     working-directory: 'trippsc2.test'
 jobs:
   molecule:
-    name: Molecule
+    name: Run Molecule tests
     runs-on:
       - self-hosted
       - linux
       - x64
     strategy:
+      fail-fast: false
       matrix:
         box:
           - debian12_base
@@ -43,18 +44,13 @@ jobs:
           - rocky8_base
           - rocky8_cis
           - rocky8_ws_base
+          - ubuntu2404_base
+          - ubuntu2204_base
+          - ubuntu2004_base
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Run Molecule tests - ${{ matrix.box }}
+        uses: trippsoft/github-actions/.github/workflows/molecule.yml@main
         with:
-          path: 'trippsc2.test'
-      - name: Run Molecule tests
-        run: |
-          source ~/venv/ansible-2.16/bin/activate
-          cd ./roles/test
-          molecule test
-          deactivate
-        env:
-          PY_COLORS: '1'
-          ANSIBLE_FORCE_COLOR: '1'
-          MOLECULE_BOX: ${{ matrix.box }}
+          working_directory: 'trippsc2.test'
+          role_name: 'test'
+          box: ${{ matrix.box }}
