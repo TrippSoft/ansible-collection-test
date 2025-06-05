@@ -44,7 +44,7 @@ jobs:
           aar-doc . markdown
           git config user.name "GitHub Actions"
           git config user.email "github-actions@github.com"
-          git add README.md
-          git commit -m "Update test role documentation."
+          git add README.md || /bin/true
+          git commit -m "Update test role documentation." || /bin/true
           git push origin main
           deactivate

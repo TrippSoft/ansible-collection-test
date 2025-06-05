@@ -8,6 +8,7 @@ name: CI - test role
     paths:
       - roles/test/**
       - '!roles/test/.aar_doc.yml'
+      - '!roles/test/README.md'
       - '!roles/test/meta/argument_specs.yml'
       - '!roles/test/meta/main.yml'
   push:
@@ -16,6 +17,7 @@ name: CI - test role
     paths:
       - roles/test/**
       - '!roles/test/.aar_doc.yml'
+      - '!roles/test/README.md'
       - '!roles/test/meta/argument_specs.yml'
       - '!roles/test/meta/main.yml'
 defaults:
