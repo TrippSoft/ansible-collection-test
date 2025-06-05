@@ -8,14 +8,6 @@ defaults:
   run:
     working-directory: 'trippsc2.test'
 jobs:
-  call-ci-test:
-    name: Call CI test workflow
-    uses: trippsoft/ansible-collection-test/.github/workflows/ci-test.yml@main
-  call-docs-test:
-    name: Call Docs test workflow
-    uses: trippsoft/ansible-collection-test/.github/workflows/docs-test.yml@main
-    permissions:
-      contents: write
   release:
     name: Release
     runs-on:
@@ -31,6 +23,8 @@ jobs:
         run: |
           source ~/venv/ansible-2.16/bin/activate
           ansible-galaxy collection build --force
-          ansible-galaxy collection publish --force --token "${ secrets.GALAXY_API_KEY }" *.tar.gz
+          ansible-galaxy collection publish --force --token "$ANSIBLE_GALAXY_TOKEN" *.tar.gz
           rm -rf *.tar.gz
           deactivate
+        env:
+          ANSIBLE_GALAXY_TOKEN: ${{ secrets.GALAXY_API_KEY }}
