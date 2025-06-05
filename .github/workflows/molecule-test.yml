@@ -31,7 +31,7 @@ jobs:
     with:
       working_directory: 'trippsc2.test'
       role_name: 'test'
-      box: 'debian12_base'
+      box: ${{ matrix.box }}
     strategy:
       fail-fast: false
       matrix:
