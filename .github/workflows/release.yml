@@ -14,6 +14,8 @@ jobs:
   call-docs-test:
     name: Call Docs test workflow
     uses: trippsoft/ansible-collection-test/.github/workflows/docs-test.yml@main
+    permissions:
+      contents: write
   release:
     name: Release
     runs-on:
